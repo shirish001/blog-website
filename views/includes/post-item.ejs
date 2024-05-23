@@ -1,0 +1,13 @@
+<article class="post-item">
+  <h2><%= postKey.title%></h2>
+  <p class="post-item-author">By <%= postKey.author.name%></p>
+  <p><%= postKey.summary%></p>
+  <div class="post-actions">
+    <form action="/posts/<%= postKey._id%>/delete" method="POST">
+      <button class="btn btn-alt">Delete Post</button>
+    </form>
+    <a href="/posts/<%= postKey._id  %>/edit">Edit Post</a>
+    <!-- accessing the posts document's id to form new link -->
+    <a class="btn" href="/posts/<%= postKey._id %>">View Post</a>
+  </div>
+</article>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head', { title: 'Update post' }) %>
+    <link rel="stylesheet" href="/styles/forms.css" />
+  </head>
+
+  <body>
+    <%- include('includes/header') %>
+    <main>
+      <h1>Update post</h1>
+      <!-- if the path is same but the methods are different they would still be different routes -->
+      <form action="/posts/<%= post._id %>/edit" method="POST">
+        <div class="form-control">
+          <label for="title">Title</label>
+          <!-- value atribute specifies the value to be stored already if any -->
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%=post.title  %>"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="summary">Summary</label>
+          <input
+            type="text"
+            id="summary"
+            name="summary"
+            value="<%= post.summary  %>"
+            required
+            maxlength="255"
+          />
+        </div>
+        <div class="form-control">
+          <label for="content">Post Content</label>
+          <!-- do not use line breaks in textarea -->
+          <textarea id="content" name="content" required rows="5"><%= post.body %></textarea>
+        </div>
+        <button class="btn">Update Post</button>
+      </form>
+    </main>
+  </body>
+</html>

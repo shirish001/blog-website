@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head', { title: 'Add new post' }) %>
+    <link rel="stylesheet" href="/styles/forms.css" />
+  </head>
+
+  <body>
+    <%- include('includes/header') %>
+    <main>
+      <h1>Add a new post</h1>
+      <!-- when this form will be submitted the values will be stored in "name" attribute keys of various input elements -->
+      <form action="/posts" method="POST">
+        <div class="form-control">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+        <div class="form-control">
+          <label for="summary">Summary</label>
+          <input
+            type="text"
+            id="summary"
+            name="summary"
+            required
+            maxlength="255"
+          />
+        </div>
+        <div class="form-control">
+          <label for="content">Post Content</label>
+          <textarea id="content" name="content" required rows="5"></textarea>
+        </div>
+        <div class="form-control">
+          <label for="author">Select Author</label>
+          <!-- for drop down element also value will be stored in the "name" attribute here which is author and author id would be stored in option "value" attribute -->
+          <select id="author" name="author">
+            <!-- using the passed database authors name in drop down -->
+            <% for(const author of authorsKey) { %> 
+            <option value="<%= author._id %>"><%= author.name%></option>
+            <% } %>
+          </select>
+        </div>
+        <button class="btn">Add Post</button>
+      </form>
+    </main>
+  </body>
+</html>
